@@ -13,6 +13,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
+  String _platformBattery = 'Unknown';
+  String _platformTelephony = 'Unknown';
 
   @override
   void initState() {
@@ -23,11 +25,29 @@ class _MyAppState extends State<MyApp> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     String platformVersion;
+    String platformBattery;
+    String platformTelephony;
     // Platform messages may fail, so we use a try/catch PlatformException.
+    // We also handle the message potentially returning null.
     try {
-      platformVersion = await Vscodeplugin.platformVersion;
+      platformVersion =
+          await Vscodeplugin.platformVersion ?? 'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
+    }
+
+    try {
+      platformBattery =
+          await Vscodeplugin.platformBattery ?? 'Unknown platform version';
+    } on PlatformException {
+      platformBattery = 'Failed to get platform version.';
+    }
+
+    try {
+      platformTelephony =
+          await Vscodeplugin.platformTelephony ?? 'Unknown platform version';
+    } on PlatformException {
+      platformTelephony = 'Failed to get platform version.';
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -37,6 +57,8 @@ class _MyAppState extends State<MyApp> {
 
     setState(() {
       _platformVersion = platformVersion;
+      _platformBattery = platformBattery;
+      _platformTelephony = platformTelephony;
     });
   }
 
@@ -44,13 +66,16 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
-        ),
-      ),
+          appBar: AppBar(
+            title: const Text('Plugin example app'),
+          ),
+          body: Column(
+            children: [
+              Text('Running on: $_platformVersion\n'),
+              Text('Running on: $_platformBattery\n'),
+              Text('Running on: $_platformTelephony\n'),
+            ],
+          )),
     );
   }
 }

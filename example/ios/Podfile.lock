@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - vscodeplugin (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - vscodeplugin (from `.symlinks/plugins/vscodeplugin/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  vscodeplugin:
+    :path: ".symlinks/plugins/vscodeplugin/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  vscodeplugin: f141e978ee00a20ee8a996a4a6010ebee835a025
+
+PODFILE CHECKSUM: 083258d7f5e80b42ea9bfee905fe93049bc04c64
+
+COCOAPODS: 1.8.4

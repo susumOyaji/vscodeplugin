@@ -41,10 +41,15 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (call.method == "getPlatformVersion") {
       result.success("Android ${android.os.Build.VERSION.RELEASE}")
+    } else if (call.method == "getPlatformBattery") {
+      result.success("Android ${android.os.Build.TIME}")
+    } else if (call.method == "getTelephonyInfo") {
+      result.success("Android  Telephony ${android.intent.action.NEW_OUTGOING_CALL}")  
     } else {
       result.notImplemented()
     }
-  }
+
+ }
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
