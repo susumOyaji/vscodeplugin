@@ -8,6 +8,8 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
+import io.flutter.plugin.common.android.telephony.TelephonyManager;
+
 /** VscodepluginPlugin */
 public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
   /// The MethodChannel that will the communication between Flutter and native Android
@@ -42,9 +44,9 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
     if (call.method == "getPlatformVersion") {
       result.success("Android ${android.os.Build.VERSION.RELEASE}")
     } else if (call.method == "getPlatformBattery") {
-      result.success("Android ${android.os.Build.TIME}")
+      result.success("Android ${android.os.Build.VERSION.RELEASE}")
     } else if (call.method == "getTelephonyInfo") {
-      result.success("Android  Telephony ${android.intent.action.NEW_OUTGOING_CALL}")  
+      result.success("Android  Telephony ${android.os.Build.VERSION.RELEASE}")  
     } else {
       result.notImplemented()
     }
