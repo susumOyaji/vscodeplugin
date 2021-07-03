@@ -58,8 +58,7 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
       } else {
           result.error("UNAVAILABLE", "AndroidPhone not available.", null)
       }
-    } else {
-      if (call.method.equals("hangup")) {
+    } else if (call.method == "hangup") {
           Toast.makeText(this@DialerActivity, "Started theMethodChannel to hangup ", Toast.LENGTH_SHORT).show()
           // invokeMethodの第二引数で指定したパラメータを取得できます
           val hangupparameters = call.arguments as Boolean
@@ -69,13 +68,12 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
           } else {
               result.error("UNAVAILABLE", "Hangup not available.", null)
           }
-      } else {
-          result.notImplemented() //該当するメソッドが実装されていない
-      } // TOD
-    } // TODO
-  }
+      //} else {
+      //    result.notImplemented() //該当するメソッドが実装されていない
+      //} // TOD
+    //} // TODO
   } else {
-    result.notImplemented()
+    result.notImplemented() //該当するメソッドが実装されていない
   }
 }
 
@@ -131,7 +129,7 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
         const val REQUEST_CODE = 1
         private const val REQUEST_ID = 1
     }
-}
+//}
 
   
 
