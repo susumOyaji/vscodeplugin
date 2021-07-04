@@ -8,6 +8,20 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
+
+//import android.os.Bundle
+import android.widget.Toast
+import android.annotation.SuppressLint 
+
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.provider.ContactsContract;
+import android.telephony.PhoneNumberUtils;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
+
+
 ///import io.flutter.plugin.common.android.telephony.TelephonyManager;
 
 /** VscodepluginPlugin */
@@ -17,6 +31,8 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
   private lateinit var channel : MethodChannel
+  var parameters: String? = null
+
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "vscodeplugin")
@@ -48,7 +64,7 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
     } else if (call.method == "getTelephonyInfo") {
       result.success("Android  Telephony ${android.os.Build.VERSION.RELEASE}")  
     } else if (call.method == "androidphone") {
-      Toast.makeText(this@DialerActivity, "Started theMethodChannel to makeCall", Toast.LENGTH_SHORT).show()
+      //Toast.makeText(this@VscodepluginPlugin, "Started theMethodChannel to makeCall", Toast.LENGTH_SHORT).show()
 
       // invokeMethodの第二引数で指定したパラメータを取得できます
       parameters = call.arguments.toString()
@@ -59,7 +75,7 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
           result.error("UNAVAILABLE", "AndroidPhone not available.", null)
       }
     } else if (call.method == "hangup") {
-          Toast.makeText(this@DialerActivity, "Started theMethodChannel to hangup ", Toast.LENGTH_SHORT).show()
+          //Toast.makeText(this@VscodepluginPlugin, "Started theMethodChannel to hangup ", Toast.LENGTH_SHORT).show()
           // invokeMethodの第二引数で指定したパラメータを取得できます
           val hangupparameters = call.arguments as Boolean
           val hangup = hangup(hangupparameters)
@@ -81,7 +97,9 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
   @SuppressLint("MissingPermission")
   fun makeCall(_phone: String?): String? {
       // If permission to call is granted
-      if (checkSelfPermission(CALL_PHONE) === PERMISSION_GRANTED) {
+      //アクセス権限を与える仕組みをPermissionという。
+      //アクセス権限が許可されているかどうかをcheckSelfPermissionメソッドを使用して確認いたします。
+      if (PermissionChecker.checkSelfPermission(CALL_PHONE) === PERMISSION_GRANTED) {
           // Create the Uri from phoneNumberInput
           val uri: Uri = Uri.parse("tel:$_phone")
 
@@ -122,13 +140,13 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
         }
     }
 
-    companion object {
-        private const val CHANNEL = "samples.flutter.io/androidphone"
-        private const val EXTRA_STRING = "extra_string"
-        private const val REQUEST_PERMISSION = 0
-        const val REQUEST_CODE = 1
-        private const val REQUEST_ID = 1
-    }
+    //companion object {
+    //    private const val CHANNEL = "samples.flutter.io/androidphone"
+    //    private const val EXTRA_STRING = "extra_string"
+    //    private const val REQUEST_PERMISSION = 0
+    //    const val REQUEST_CODE = 1
+    //    private const val REQUEST_ID = 1
+    //}
 //}
 
   
