@@ -1,3 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.example.vscodeplugin">
+
+ 
+   <!-- パーミッションの設定 -->
+   <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+
+  
+       
+       
+    
+    
 </manifest>
