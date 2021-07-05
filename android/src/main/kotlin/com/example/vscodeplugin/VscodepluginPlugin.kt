@@ -69,7 +69,10 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
     } else if (call.method == "getTelephonyInfo") {
       result.success("Android  Telephony ${android.os.Build.VERSION.RELEASE}")  
     } else if (call.method == "androidphone") {
-      result.success("Android  Telephony ${android.os.Build.VERSION.RELEASE}")  
+      result.success(Intent intentcall = new Intent();
+        intentcall.setAction(Intent.ACTION_DIAL);
+        intentcall.setData(Uri.parse("tel:" + phonenumber));
+        startActivity(intentcall);)  
     } else {
       result.notImplemented() //該当するメソッドが実装されていない
     }
