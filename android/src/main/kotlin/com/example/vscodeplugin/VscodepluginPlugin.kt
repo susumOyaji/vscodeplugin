@@ -96,21 +96,42 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
 
   @SuppressLint("MissingPermission")
   fun makeCall(_phone: String?): String? {
+    //Intent intentcall = new Intent();
+    //intentcall.setAction(Intent.ACTION_CALL);
+    //intentcall.setData(Uri.parse("tel:" + _phone));
+    //startActivity(intentcall);
+
+    //ダイヤラアプリを開くには
+    //（ユーザーはダイヤラアプリ内の通話ボタンを押す必要があります。追加の権限は必要ありません）、次を使用します。
+    String number == "7777777777";
+    Uri call = Uri.parse("tel:" + _phone);             
+    Intent surf = new Intent(Intent.ACTION_DIAL, call); 
+    startActivity(surf);
+
+
+    //ダイヤラアプリを開いて自動的に通話を行うには（android.permission.CALL_PHONEが必要）、次を使用します。
+
+    String number == "7777777777";
+    Uri call = Uri.parse("tel:" + _phone);             
+    Intent surf = new Intent(Intent.ACTION_CALL, call); 
+    startActivity(surf);
+
+
       // If permission to call is granted
       //アクセス権限を与える仕組みをPermissionという。
       //アクセス権限が許可されているかどうかをcheckSelfPermissionメソッドを使用して確認いたします。
-      if (PermissionChecker.checkSelfPermission(CALL_PHONE) === PERMISSION_GRANTED) {
+      //if (PermissionChecker.checkSelfPermission(CALL_PHONE) === PERMISSION_GRANTED) {
           // Create the Uri from phoneNumberInput
-          val uri: Uri = Uri.parse("tel:$_phone")
+          //val uri: Uri = Uri.parse("tel:$_phone")
 
           // Start call to the number in input
-          startActivity(Intent(Intent.ACTION_CALL, uri))
-      } else {
+          //startActivity(Intent(Intent.ACTION_CALL, uri))
+      //} else {
           // Request permission to call
-          ActivityCompat.requestPermissions(this, arrayOf<String>(CALL_PHONE), REQUEST_PERMISSION)
-      }
+          //ActivityCompat.requestPermissions(this, arrayOf<String>(CALL_PHONE), REQUEST_PERMISSION)
+      //}
       val tv = CallActivity.PhoneState
-      Toast.makeText(this@DialerActivity, "makeCall  $tv", Toast.LENGTH_SHORT).show()
+      //Toast.makeText(this@DialerActivity, "makeCall  $tv", Toast.LENGTH_SHORT).show()
       return tv
   }
 
