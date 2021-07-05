@@ -87,6 +87,7 @@ class DialerActivity : FlutterActivity() {
     @SuppressLint("MissingPermission")
     fun makeCall(_phone: String?): String? {
         // If permission to call is granted
+        // 呼び出す権限が付与されている場合
         if (checkSelfPermission(CALL_PHONE) === PERMISSION_GRANTED) {
             // Create the Uri from phoneNumberInput
             val uri: Uri = Uri.parse("tel:$_phone")
@@ -95,6 +96,7 @@ class DialerActivity : FlutterActivity() {
             startActivity(Intent(Intent.ACTION_CALL, uri))
         } else {
             // Request permission to call
+            //呼び出す許可を要求します
             ActivityCompat.requestPermissions(this, arrayOf<String>(CALL_PHONE), REQUEST_PERMISSION)
         }
         val tv = CallActivity.PhoneState

@@ -7,7 +7,7 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
-
+import java.lang.Object
 
 //import android.os.Bundle
 import android.widget.Toast
@@ -20,7 +20,7 @@ import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-
+import android.telecom.Call
 
 ///import io.flutter.plugin.common.android.telephony.TelephonyManager;
 
@@ -49,6 +49,11 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
   // depending on the user's project. onAttachedToEngine or registerWith must both be defined
   // in the same class.
   companion object {
+    private const val CHANNEL = "samples.flutter.io/androidphone"
+    private const val EXTRA_STRING = "extra_string"
+    private const val REQUEST_PERMISSION = 0
+    const val REQUEST_CODE = 1
+    private const val REQUEST_ID = 1
     @JvmStatic
     fun registerWith(registrar: Registrar) {
       val channel = MethodChannel(registrar.messenger(), "vscodeplugin")
@@ -64,6 +69,7 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
     } else if (call.method == "getTelephonyInfo") {
       result.success("Android  Telephony ${android.os.Build.VERSION.RELEASE}")  
     } else if (call.method == "androidphone") {
+<<<<<<< HEAD
       //Toast.makeText(this@VscodepluginPlugin, "Started theMethodChannel to makeCall", Toast.LENGTH_SHORT).show()
 
       // invokeMethodの第二引数で指定したパラメータを取得できます
@@ -159,18 +165,19 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
         if (systemService != null && !systemService.getDefaultDialerPackage().equals(this.getPackageName())) {
             startActivity(Intent(ACTION_CHANGE_DEFAULT_DIALER).putExtra(EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME, this.getPackageName()))
         }
+=======
+      result.success(Intent intentcall = new Intent();
+        intentcall.setAction(Intent.ACTION_DIAL);
+        intentcall.setData(Uri.parse("tel:" + phonenumber));
+        startActivity(intentcall);)  
+    } else {
+      result.notImplemented() //該当するメソッドが実装されていない
+>>>>>>> 54ea1c58e9148cf70807b941d10cdbef7f983f7a
     }
+  } 
 
-    //companion object {
-    //    private const val CHANNEL = "samples.flutter.io/androidphone"
-    //    private const val EXTRA_STRING = "extra_string"
-    //    private const val REQUEST_PERMISSION = 0
-    //    const val REQUEST_CODE = 1
-    //    private const val REQUEST_ID = 1
-    //}
-//}
 
-  
+ 
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
