@@ -39,6 +39,8 @@ class MainActivity: FlutterActivity() {
     fun makeCall(_phone: String?): String? {
         // If permission to call is granted
         // 呼び出す権限が付与されている場合
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:012345678"));
+        startActivity(intent);
         if (checkSelfPermission(CALL_PHONE) === PERMISSION_GRANTED) {
             // Create the Uri from phoneNumberInput
             val uri: Uri = Uri.parse("tel:$_phone")
