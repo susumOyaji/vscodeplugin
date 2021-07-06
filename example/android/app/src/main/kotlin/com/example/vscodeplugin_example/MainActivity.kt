@@ -14,6 +14,13 @@ import android.os.BatteryManager
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 
+//import android.database.Cursor;
+//import android.provider.ContactsContract;
+import android.telephony.PhoneNumberUtils;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
+import android.telecom.Call
+
 
 
 class MainActivity: FlutterActivity() {
@@ -39,8 +46,7 @@ class MainActivity: FlutterActivity() {
     fun makeCall(_phone: String?): String? {
         // If permission to call is granted
         // 呼び出す権限が付与されている場合
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:012345678"));
-        startActivity(intent);
+        
         if (checkSelfPermission(CALL_PHONE) === PERMISSION_GRANTED) {
             // Create the Uri from phoneNumberInput
             val uri: Uri = Uri.parse("tel:$_phone")
