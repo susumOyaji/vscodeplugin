@@ -7,9 +7,10 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
-import java.lang.Object
+import android.os.Bundle
 
-//import android.os.Bundle
+
+
 import android.widget.Toast
 import android.annotation.SuppressLint 
 
@@ -49,11 +50,11 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
   // depending on the user's project. onAttachedToEngine or registerWith must both be defined
   // in the same class.
   companion object {
-    private const val CHANNEL = "samples.flutter.io/androidphone"
-    private const val EXTRA_STRING = "extra_string"
-    private const val REQUEST_PERMISSION = 0
-    const val REQUEST_CODE = 1
-    private const val REQUEST_ID = 1
+    //private const val CHANNEL = "samples.flutter.io/androidphone"
+    //private const val EXTRA_STRING = "extra_string"
+    //private const val REQUEST_PERMISSION = 0
+    //const val REQUEST_CODE = 1
+    //private const val REQUEST_ID = 1
     @JvmStatic
     fun registerWith(registrar: Registrar) {
       val channel = MethodChannel(registrar.messenger(), "vscodeplugin")
@@ -69,14 +70,14 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
     } else if (call.method == "getTelephonyInfo") {
       result.success("Android  Telephony ${android.os.Build.VERSION.RELEASE}")  
     } else if (call.method == "androidphone") {
-<<<<<<< HEAD
+
       //Toast.makeText(this@VscodepluginPlugin, "Started theMethodChannel to makeCall", Toast.LENGTH_SHORT).show()
 
       // invokeMethodの第二引数で指定したパラメータを取得できます
       parameters = call.arguments.toString()
-      val phonestate = makeCall(parameters)
-      if (phonestate != null) {
-          result.success(phonestate) //return to Flutter
+      //val phonestate = makeCall(parameters)
+      if ("phonestate" != null) {
+          result.success("phonestate") //return to Flutter
       } else {
           result.error("UNAVAILABLE", "AndroidPhone not available.", null)
       }
@@ -84,9 +85,9 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
           //Toast.makeText(this@VscodepluginPlugin, "Started theMethodChannel to hangup ", Toast.LENGTH_SHORT).show()
           // invokeMethodの第二引数で指定したパラメータを取得できます
           val hangupparameters = call.arguments as Boolean
-          val hangup = hangup(hangupparameters)
-          if (hangup != true) {
-              result.success(hangup)
+          //val hangup = hangup(hangupparameters)
+          if ("hangup" != "true") {
+              result.success("hangup")
           } else {
               result.error("UNAVAILABLE", "Hangup not available.", null)
           }
@@ -100,82 +101,8 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
 }
 
 
-  @SuppressLint("MissingPermission")
-  fun makeCall(_phone: String?): String? {
-    //Intent intentcall = new Intent();
-    //intentcall.setAction(Intent.ACTION_CALL);
-    //intentcall.setData(Uri.parse("tel:" + _phone));
-    //startActivity(intentcall);
-
-    //ダイヤラアプリを開くには
-    //（ユーザーはダイヤラアプリ内の通話ボタンを押す必要があります。追加の権限は必要ありません）、次を使用します。
-    String number == "7777777777";
-    Uri call = Uri.parse("tel:" + _phone);             
-    Intent surf = new Intent(Intent.ACTION_DIAL, call); 
-    startActivity(surf);
-
-
-    //ダイヤラアプリを開いて自動的に通話を行うには（android.permission.CALL_PHONEが必要）、次を使用します。
-
-    String number == "7777777777";
-    Uri call = Uri.parse("tel:" + _phone);             
-    Intent surf = new Intent(Intent.ACTION_CALL, call); 
-    startActivity(surf);
-
-
-      // If permission to call is granted
-      //アクセス権限を与える仕組みをPermissionという。
-      //アクセス権限が許可されているかどうかをcheckSelfPermissionメソッドを使用して確認いたします。
-      //if (PermissionChecker.checkSelfPermission(CALL_PHONE) === PERMISSION_GRANTED) {
-          // Create the Uri from phoneNumberInput
-          //val uri: Uri = Uri.parse("tel:$_phone")
-
-          // Start call to the number in input
-          //startActivity(Intent(Intent.ACTION_CALL, uri))
-      //} else {
-          // Request permission to call
-          //ActivityCompat.requestPermissions(this, arrayOf<String>(CALL_PHONE), REQUEST_PERMISSION)
-      //}
-      val tv = CallActivity.PhoneState
-      //Toast.makeText(this@DialerActivity, "makeCall  $tv", Toast.LENGTH_SHORT).show()
-      return tv
-  }
-
-  fun hangup(hangup: Boolean): Boolean {
-      Toast.makeText(this@DialerActivity, "hangup  to True ", Toast.LENGTH_SHORT).show()
-      //CallActivity.onHangup();
-      OngoingCall.hangup()
-      return true
-  }
-
-  fun onRequestPermissionsResult(requestCode: Int, @NonNull permissions: Array<String?>?, @NonNull grantResults: IntArray) {
-      super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-      Toast.makeText(this@DialerActivity, "onRequestPermissionsResult", Toast.LENGTH_SHORT).show()
-      val grantRes = ArrayList<Int>()
-      // Add every result to the array
-      for (grantResult in grantResults) grantRes.add(grantResult)
-      if (requestCode == REQUEST_PERMISSION && grantRes.contains(PERMISSION_GRANTED)) {
-          makeCall(parameters)
-      }
-  }
-
-    //ユーザーが自分のアプリをデフォルトの電話アプリとして設定する
-    private fun offerReplacingDefaultDialer() {
-        val systemService: TelecomManager = this.getSystemService(TelecomManager::class.java)
-        if (systemService != null && !systemService.getDefaultDialerPackage().equals(this.getPackageName())) {
-            startActivity(Intent(ACTION_CHANGE_DEFAULT_DIALER).putExtra(EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME, this.getPackageName()))
-        }
-=======
-      result.success(Intent intentcall = new Intent();
-        intentcall.setAction(Intent.ACTION_DIAL);
-        intentcall.setData(Uri.parse("tel:" + phonenumber));
-        startActivity(intentcall);)  
-    } else {
-      result.notImplemented() //該当するメソッドが実装されていない
->>>>>>> 54ea1c58e9148cf70807b941d10cdbef7f983f7a
-    }
-  } 
-
+ 
+  
 
  
 
