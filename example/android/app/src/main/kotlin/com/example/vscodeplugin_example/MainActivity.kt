@@ -35,8 +35,8 @@ class MainActivity: FlutterActivity() {
   }
 
 
-
- fun makeCall(_phone: String?): String? {
+    //@SuppressLint("MissingPermission")   
+    fun makeCall(_phone: String?): String? {
         // If permission to call is granted
         // 呼び出す権限が付与されている場合
         if (checkSelfPermission(CALL_PHONE) === PERMISSION_GRANTED) {
