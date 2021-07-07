@@ -1,6 +1,6 @@
 package com.example.vscodeplugin_example
 
-import androidx.annotation.NonNull;
+//import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugins.GeneratedPluginRegistrant
@@ -20,7 +20,17 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.telecom.Call
+import android.net.Uri
+import android.widget.Toast
 
+//AndroidX
+//import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import android.Manifest
+import java.util.*
+//import static android.Manifest.permission.CALL_PHONE;
 
 
 class MainActivity: FlutterActivity() {
@@ -29,25 +39,26 @@ class MainActivity: FlutterActivity() {
     }
 
     private fun getBatteryLevel(): Int {
-    val batteryLevel: Int
-    if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-      val batteryManager = getSystemService(Context.BATTERY_SERVICE) as BatteryManager
-      batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
-    } else {
-      val intent = ContextWrapper(applicationContext).registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
-      batteryLevel = intent!!.getIntExtra(BatteryManager.EXTRA_LEVEL, -1) * 100 / intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
+        val batteryLevel: Int
+        if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+        val batteryManager = getSystemService(Context.BATTERY_SERVICE) as BatteryManager
+        batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+        } else {
+        val intent = ContextWrapper(applicationContext).registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+        batteryLevel = intent!!.getIntExtra(BatteryManager.EXTRA_LEVEL, -1) * 100 / intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
+        }
+
+        return batteryLevel
     }
 
-    return batteryLevel
-  }
 
-
-    //@SuppressLint("MissingPermission")   
-    fun makeCall(_phone: String?): String? {
+    //@SuppressLint("MissingPermission")
+       
+    private fun makeCall(_phone: String?): String? {
         // If permission to call is granted
         // 呼び出す権限が付与されている場合
         
-        if (checkSelfPermission(CALL_PHONE) === PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(CALL_PHONE) === PERMISSION_GRANTED) {
             // Create the Uri from phoneNumberInput
             val uri: Uri = Uri.parse("tel:$_phone")
 
@@ -62,7 +73,47 @@ class MainActivity: FlutterActivity() {
         Toast.makeText(this@DialerActivity, "makeCall  $tv", Toast.LENGTH_SHORT).show()
         return tv
     }
+    
 
+    private fun makeCall(context: Context, mob: String) {
+        try {
+            val intent= Intent(Intent.ACTION_DIAL)
+            intent.data= Uri.parse("tel:$mob")
+            context.startActivity(intent)
+        } catch (e: java.lang.Exception) {
+            Toast.makeText(context,
+                "Unable to call at this time", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    //ダイヤラからの通話の場合（許可は不要）：
+    private fun callFromDailer(mContext: Context, number: String) {
+        try {
+            val callIntent= Intent(Intent.ACTION_DIAL)
+            callIntent.data= Uri.parse("tel:$number")
+            mContext.startActivity(callIntent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(mContext, "No SIM Found", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    //アプリからの直接通話の場合（許可が必要）：
+    private fun callDirect(mContext: Context, number: String) {
+        try {
+            val callIntent= Intent(Intent.ACTION_CALL)
+            callIntent.data= Uri.parse("tel:$number")
+            mContext.startActivity(callIntent)
+        } catch (e: SecurityException) {
+            Toast.makeText(mContext, "Need call permission", Toast.LENGTH_LONG).show()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(mContext, "No SIM Found", Toast.LENGTH_LONG).show()
+        }
+    }
+
+
+    /* 
     fun hangup(hangup: Boolean): Boolean {
         Toast.makeText(this@DialerActivity, "hangup  to True ", Toast.LENGTH_SHORT).show()
         //CallActivity.onHangup();
@@ -96,7 +147,7 @@ class MainActivity: FlutterActivity() {
         const val REQUEST_CODE = 1
         private const val REQUEST_ID = 1
     }
-
+    */
 
 
 }

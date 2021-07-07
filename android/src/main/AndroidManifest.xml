@@ -2,8 +2,8 @@
   package="com.example.vscodeplugin">
 
  
-   <!-- パーミッションの設定 -->
-   <uses-permission android:name="android.permission.CALL_PHONE"/>
+  <!-- Dangerous パーミッション -->
+  <uses-permission android:name="android.permission.CALL_PHONE"/>
 
 
   

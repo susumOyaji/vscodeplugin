@@ -1,6 +1,6 @@
 package com.example.vscodeplugin
 
-import androidx.annotation.NonNull;
+//import androidx.annotation.NonNull;
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -22,7 +22,13 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.telecom.Call
+import android.net.Uri
 
+//AndroidX
+//import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 ///import io.flutter.plugin.common.android.telephony.TelephonyManager;
 
 /** VscodepluginPlugin */
@@ -95,12 +101,44 @@ public class VscodepluginPlugin: FlutterPlugin, MethodCallHandler {
       //    result.notImplemented() //該当するメソッドが実装されていない
       //} // TOD
     //} // TODO
-  } else {
-    result.notImplemented() //該当するメソッドが実装されていない
+    } else {
+      result.notImplemented() //該当するメソッドが実装されていない
+    }
   }
-}
 
 
+  //@SuppressLint("MissingPermission")
+  /*     
+    fun makeCall(_phone: String?): String? {
+        // If permission to call is granted
+        // 呼び出す権限が付与されている場合
+        
+        if (ContextCompat.checkSelfPermission(context,Manifest.permission.CALL_PHONE) === PERMISSION_GRANTED) {
+            // Create the Uri from phoneNumberInput
+            val uri: Uri = Uri.parse("tel:$_phone")
+
+            // Start call to the number in input
+            startActivity(Intent(Intent.ACTION_CALL, uri))
+        } else {
+            // Request permission to call
+            //呼び出す許可を要求します
+            ActivityCompat.requestPermissions(this, arrayOf<String>(CALL_PHONE), REQUEST_PERMISSION)
+        }
+        val tv = CallActivity.PhoneState
+        Toast.makeText(this@DialerActivity, "makeCall  $tv", Toast.LENGTH_SHORT).show()
+        return tv
+    }
+  */  
+  fun makeCall(context: Context, mob: String) {
+    try {
+        val intent= Intent(Intent.ACTION_DIAL)
+        intent.data= Uri.parse("tel:$mob")
+        context.startActivity(intent)
+    } catch (e: java.lang.Exception) {
+        Toast.makeText(context,
+            "Unable to call at this time", Toast.LENGTH_SHORT).show()
+    }
+  }
  
   
 

@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a70d3781-dacf-436b-af8b-96f5215fa41f" name="デフォルト変更リスト" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/src/main/kotlin/com/example/vscodeplugin/VscodepluginPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/kotlin/com/example/vscodeplugin/VscodepluginPlugin.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/kotlin/com/example/vscodeplugin_example/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/main/kotlin/com/example/vscodeplugin_example/MainActivity.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,37 +40,37 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="2006" height="394" key="GridCell.Tab.0.bottom" timestamp="1625443391552">
+    <state width="2006" height="394" key="GridCell.Tab.0.bottom" timestamp="1625638865057">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="2006" height="394" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1625443391552" />
-    <state width="2006" height="394" key="GridCell.Tab.0.center" timestamp="1625443391551">
+    <state width="2006" height="394" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1625638865057" />
+    <state width="2006" height="394" key="GridCell.Tab.0.center" timestamp="1625638865057">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="2006" height="394" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1625443391551" />
-    <state width="2006" height="394" key="GridCell.Tab.0.left" timestamp="1625443391551">
+    <state width="2006" height="394" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1625638865057" />
+    <state width="2006" height="394" key="GridCell.Tab.0.left" timestamp="1625638865057">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="2006" height="394" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1625443391551" />
-    <state width="2006" height="394" key="GridCell.Tab.0.right" timestamp="1625443391552">
+    <state width="2006" height="394" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1625638865057" />
+    <state width="2006" height="394" key="GridCell.Tab.0.right" timestamp="1625638865057">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="2006" height="394" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1625443391552" />
-    <state width="2006" height="394" key="GridCell.Tab.1.bottom" timestamp="1625443391552">
+    <state width="2006" height="394" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1625638865057" />
+    <state width="2006" height="394" key="GridCell.Tab.1.bottom" timestamp="1625638865057">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="2006" height="394" key="GridCell.Tab.1.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1625443391552" />
-    <state width="2006" height="394" key="GridCell.Tab.1.center" timestamp="1625443391552">
+    <state width="2006" height="394" key="GridCell.Tab.1.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1625638865057" />
+    <state width="2006" height="394" key="GridCell.Tab.1.center" timestamp="1625638865057">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="2006" height="394" key="GridCell.Tab.1.center/0.0.3440.1400@0.0.3440.1400" timestamp="1625443391552" />
-    <state width="2006" height="394" key="GridCell.Tab.1.left" timestamp="1625443391552">
+    <state width="2006" height="394" key="GridCell.Tab.1.center/0.0.3440.1400@0.0.3440.1400" timestamp="1625638865057" />
+    <state width="2006" height="394" key="GridCell.Tab.1.left" timestamp="1625638865057">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="2006" height="394" key="GridCell.Tab.1.left/0.0.3440.1400@0.0.3440.1400" timestamp="1625443391552" />
-    <state width="2006" height="394" key="GridCell.Tab.1.right" timestamp="1625443391552">
+    <state width="2006" height="394" key="GridCell.Tab.1.left/0.0.3440.1400@0.0.3440.1400" timestamp="1625638865057" />
+    <state width="2006" height="394" key="GridCell.Tab.1.right" timestamp="1625638865057">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="2006" height="394" key="GridCell.Tab.1.right/0.0.3440.1400@0.0.3440.1400" timestamp="1625443391552" />
+    <state width="2006" height="394" key="GridCell.Tab.1.right/0.0.3440.1400@0.0.3440.1400" timestamp="1625638865057" />
   </component>
 </project>
